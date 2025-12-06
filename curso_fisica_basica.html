@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Curso: Física Básica – Prepa+</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f2f7;
+    }
+
+    header {
+      background: #4a6cf7;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+
+    .tema {
+      background:#e1e7ff;
+      padding:12px;
+      border-radius:8px;
+      cursor:pointer;
+      margin-top:8px;
+      font-weight: bold;
+    }
+
+    .tema:hover { background:#c7d0ff; }
+
+    .contenido {
+      display:none;
+      background:#fafbff;
+      border-left: 4px solid #4a6cf7;
+      padding:15px;
+      border-radius:8px;
+      margin:10px 0;
+    }
+
+    .video-link {
+      display:flex;
+      align-items:center;
+      padding:10px;
+      background:#eef1ff;
+      border-radius:8px;
+      margin-bottom:10px;
+      text-decoration:none;
+      color:#2a2a2a;
+      font-weight:bold;
+    }
+
+    .video-link:hover {
+      background:#dce2ff;
+    }
+
+    .video-icon {
+      font-size:22px;
+      margin-right:10px;
+    }
+
+    .quiz-option {
+      background:#eaeaff;
+      padding:10px;
+      margin:6px 0;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    .quiz-option.correct { background:#b5ffb5; }
+    .quiz-option.incorrect { background:#ffb5b5; }
+
+    .quiz-finish {
+      background:#4a6cf7;
+      color:white;
+      padding:10px;
+      margin-top:10px;
+      border-radius:8px;
+      display:none;
+    }
+
+    .progreso-barra-base {
+      width:100%;
+      height:18px;
+      background:#ddd;
+      border-radius:10px;
+      overflow:hidden;
+      margin-top:10px;
+    }
+
+    .progreso-barra {
+      width:0%;
+      height:100%;
+      background:#4a6cf7;
+      transition:0.3s;
+    }
+
+    .btn-volver {
+      background:#4a6cf7;
+      color:white;
+      padding:10px 14px;
+      border-radius:8px;
+      display:inline-block;
+      text-decoration:none;
+      margin-bottom:20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Curso: Física Básica</h1>
+  <p>Cinemática – Dinámica – Trabajo – Energía – Impulso – Torque</p>
+</header>
+
+<div class="container">
+
+  <a href="index.html" class="btn-volver">← Volver a cursos</a>
+
+  <!-- ================= PROGRESO ================= -->
+  <div class="card">
+    <h2>Progreso del curso</h2>
+    <p>Temas completados: <b><span id="temasCompletados">0</span>/10</b></p>
+
+    <div class="progreso-barra-base">
+      <div class="progreso-barra" id="barraProgresoCurso"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!--                         TEMAS                             -->
+  <!-- ========================================================= -->
+
+  <!-- TEMA TEMPLATE:
+       Cada tema tiene:
+       - .tema (botón azul)
+       - .contenido (video link + quiz + mensaje final)
+  -->
+
+  <!-- ================= TEMA 1 ================= -->
+  <div class="card">
+    <div class="tema">Tema 1: Cinemática general (MRU + MRUV)</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=5oYtwBkKBSs" target="_blank">
+        <span class="video-icon">📘</span> Video: Cinemática, MRU y MRUV (Explicación)
+      </a>
+
+      <h3>Quiz Tema 1</h3>
+      <div class="quiz">
+
+        <p><b>1. El MRU se caracteriza por:</b></p>
+        <div class="quiz-option" data-correct="true">Velocidad constante</div>
+        <div class="quiz-option" data-correct="false">Aceleración constante</div>
+        <div class="quiz-option" data-correct="false">Aceleración variable</div>
+
+        <p><b>2. El MRUV se caracteriza por:</b></p>
+        <div class="quiz-option" data-correct="false">Velocidad constante</div>
+        <div class="quiz-option" data-correct="true">Aceleración constante</div>
+        <div class="quiz-option" data-correct="false">Aceleración cero</div>
+
+        <p><b>3. La unidad de aceleración es:</b></p>
+        <div class="quiz-option" data-correct="true">m/s²</div>
+        <div class="quiz-option" data-correct="false">m/s</div>
+        <div class="quiz-option" data-correct="false">m</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t1">✔ Tema 1 completado</div>
+    </div>
+  </div>
+
+
+  <!-- ================= TEMA 2 ================= -->
+  <div class="card">
+    <div class="tema">Tema 2: Movimiento uniformemente variado (MRUV)</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=F68e6qpmAIk" target="_blank">
+        <span class="video-icon">📘</span> Video: Movimiento Rectilíneo Uniformemente Variado
+      </a>
+
+      <h3>Quiz Tema 2</h3>
+      <div class="quiz">
+
+        <p><b>1. En MRUV la aceleración es:</b></p>
+        <div class="quiz-option" data-correct="true">Constante</div>
+        <div class="quiz-option" data-correct="false">Variable</div>
+        <div class="quiz-option" data-correct="false">Nula</div>
+
+        <p><b>2. En MRUV la velocidad:</b></p>
+        <div class="quiz-option" data-correct="true">Cambia uniformemente</div>
+        <div class="quiz-option" data-correct="false">Es constante</div>
+        <div class="quiz-option" data-correct="false">No existe</div>
+
+        <p><b>3. La aceleración negativa indica:</b></p>
+        <div class="quiz-option" data-correct="true">Que el cuerpo desacelera</div>
+        <div class="quiz-option" data-correct="false">Que la velocidad aumenta siempre</div>
+        <div class="quiz-option" data-correct="false">Movimiento circular</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t2">✔ Tema 2 completado</div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= TEMA 3 ================= -->
+  <div class="card">
+    <div class="tema">Tema 3: Caída libre</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=nRIZQ-WlOx8" target="_blank">
+        <span class="video-icon">📘</span> Video: Caída libre y aceleración de la gravedad
+      </a>
+
+      <h3>Quiz Tema 3</h3>
+      <div class="quiz">
+
+        <p><b>1. La aceleración de la caída libre es:</b></p>
+        <div class="quiz-option" data-correct="true">≈ 9.8 m/s²</div>
+        <div class="quiz-option" data-correct="false">≈ 5 m/s²</div>
+        <div class="quiz-option" data-correct="false">Constante 0</div>
+
+        <p><b>2. La caída libre ocurre cuando:</b></p>
+        <div class="quiz-option" data-correct="true">Solo actúa la gravedad</div>
+        <div class="quiz-option" data-correct="false">Hay fricción</div>
+        <div class="quiz-option" data-correct="false">Se usa energía externa</div>
+
+        <p><b>3. La velocidad aumenta:</b></p>
+        <div class="quiz-option" data-correct="true">Linealmente con el tiempo</div>
+        <div class="quiz-option" data-correct="false">Exponencialmente</div>
+        <div class="quiz-option" data-correct="false">No aumenta</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t3">✔ Tema 3 completado</div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= TEMA 4 ================= -->
+  <div class="card">
+    <div class="tema">Tema 4: Leyes de Newton (dinámica)</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=0_Lec-cfS-g" target="_blank">
+        <span class="video-icon">📘</span> Video: Las leyes de Newton explicadas
+      </a>
+
+      <h3>Quiz Tema 4</h3>
+      <div class="quiz">
+
+        <p><b>1. La primera ley se llama:</b></p>
+        <div class="quiz-option" data-correct="true">Ley de inercia</div>
+        <div class="quiz-option" data-correct="false">Ley de acción</div>
+        <div class="quiz-option" data-correct="false">Ley de equilibrio</div>
+
+        <p><b>2. La segunda ley relaciona:</b></p>
+        <div class="quiz-option" data-correct="true">F = m·a</div>
+        <div class="quiz-option" data-correct="false">E = m·c²</div>
+        <div class="quiz-option" data-correct="false">p = m·v</div>
+
+        <p><b>3. La tercera ley establece que:</b></p>
+        <div class="quiz-option" data-correct="true">Acción y reacción</div>
+        <div class="quiz-option" data-correct="false">Siempre hay reposo</div>
+        <div class="quiz-option" data-correct="false">La fuerza es constante</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t4">✔ Tema 4 completado</div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= TEMA 5 ================= -->
+  <div class="card">
+    <div class="tema">Tema 5: Fuerzas en la dinámica</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=pZIYyXEQ8NI" target="_blank">
+        <span class="video-icon">📘</span> Video: Dinámica y leyes de Newton — Curso ASIMOV
+      </a>
+
+      <h3>Quiz Tema 5</h3>
+      <div class="quiz">
+
+        <p><b>1. Las fuerzas se representan mediante:</b></p>
+        <div class="quiz-option" data-correct="true">Vectores</div>
+        <div class="quiz-option" data-correct="false">Escalares</div>
+        <div class="quiz-option" data-correct="false">Matrices</div>
+
+        <p><b>2. La fricción es una fuerza que:</b></p>
+        <div class="quiz-option" data-correct="true">Opuesta al movimiento</div>
+        <div class="quiz-option" data-correct="false">Aumenta la velocidad</div>
+        <div class="quiz-option" data-correct="false">No afecta movimiento</div>
+
+        <p><b>3. El peso se calcula como:</b></p>
+        <div class="quiz-option" data-correct="true">W = m·g</div>
+        <div class="quiz-option" data-correct="false">W = m/v</div>
+        <div class="quiz-option" data-correct="false">W = 1/m</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t5">✔ Tema 5 completado</div>
+    </div>
+  </div>
+
+
+  <!-- ================= TEMA 6 ================= -->
+  <div class="card">
+    <div class="tema">Tema 6: Trabajo y energía</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=FsOq80RKp7A" target="_blank">
+        <span class="video-icon">📘</span> Video: Trabajo y energía mecánica
+      </a>
+
+      <h3>Quiz Tema 6</h3>
+      <div class="quiz">
+
+        <p><b>1. El trabajo se define como:</b></p>
+        <div class="quiz-option" data-correct="true">F · d</div>
+        <div class="quiz-option" data-correct="false">m · a</div>
+        <div class="quiz-option" data-correct="false">d / t</div>
+
+        <p><b>2. La energía cinética depende de:</b></p>
+        <div class="quiz-option" data-correct="true">Velocidad</div>
+        <div class="quiz-option" data-correct="false">Temperatura</div>
+        <div class="quiz-option" data-correct="false">Color</div>
+
+        <p><b>3. La energía potencial depende de:</b></p>
+        <div class="quiz-option" data-correct="true">Altura</div>
+        <div class="quiz-option" data-correct="false">Velocidad</div>
+        <div class="quiz-option" data-correct="false">Color</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t6">✔ Tema 6 completado</div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= TEMA 7 ================= -->
+  <div class="card">
+    <div class="tema">Tema 7: Impulso y cantidad de movimiento</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=mes4Ui0NdFc" target="_blank">
+        <span class="video-icon">📘</span> Video: Impulso y cantidad de movimiento
+      </a>
+
+      <h3>Quiz Tema 7</h3>
+      <div class="quiz">
+
+        <p><b>1. La cantidad de movimiento es:</b></p>
+        <div class="quiz-option" data-correct="true">p = m·v</div>
+        <div class="quiz-option" data-correct="false">p = m/a</div>
+        <div class="quiz-option" data-correct="false">p = F·t</div>
+
+        <p><b>2. El impulso es:</b></p>
+        <div class="quiz-option" data-correct="true">J = F·t</div>
+        <div class="quiz-option" data-correct="false">J = m·v</div>
+        <div class="quiz-option" data-correct="false">J = d/t</div>
+
+        <p><b>3. El impulso cambia:</b></p>
+        <div class="quiz-option" data-correct="true">La cantidad de movimiento</div>
+        <div class="quiz-option" data-correct="false">La masa</div>
+        <div class="quiz-option" data-correct="false">La temperatura</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t7">✔ Tema 7 completado</div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= TEMA 8 ================= -->
+  <div class="card">
+    <div class="tema">Tema 8: Torque y momento de fuerza</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=f4F_Y6xsBhY" target="_blank">
+        <span class="video-icon">📘</span> Video: Torque y momento de fuerza
+      </a>
+
+      <h3>Quiz Tema 8</h3>
+      <div class="quiz">
+
+        <p><b>1. El torque depende de:</b></p>
+        <div class="quiz-option" data-correct="true">Fuerza y distancia</div>
+        <div class="quiz-option" data-correct="false">Temperatura</div>
+        <div class="quiz-option" data-correct="false">Masa</div>
+
+        <p><b>2. Si aumentas la distancia al eje:</b></p>
+        <div class="quiz-option" data-correct="true">Aumenta el torque</div>
+        <div class="quiz-option" data-correct="false">Disminuye el torque</div>
+        <div class="quiz-option" data-correct="false">No cambia</div>
+
+        <p><b>3. El torque genera:</b></p>
+        <div class="quiz-option" data-correct="true">Rotación</div>
+        <div class="quiz-option" data-correct="false">Traslación</div>
+        <div class="quiz-option" data-correct="false">Vibración</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t8">✔ Tema 8 completado</div>
+    </div>
+  </div>
+
+
+  <!-- ================= TEMA 9 ================= -->
+  <div class="card">
+    <div class="tema">Tema 9: Repaso de cinemática completa</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=OQwIzt5dU8M" target="_blank">
+        <span class="video-icon">📘</span> Video: Repaso general de cinemática (MRU-MRUV-Caída libre)
+      </a>
+
+      <h3>Quiz Tema 9</h3>
+      <div class="quiz">
+
+        <p><b>1. La cinemática estudia:</b></p>
+        <div class="quiz-option" data-correct="true">El movimiento</div>
+        <div class="quiz-option" data-correct="false">Las fuerzas internas</div>
+        <div class="quiz-option" data-correct="false">Reacciones químicas</div>
+
+        <p><b>2. MRU + MRUV son:</b></p>
+        <div class="quiz-option" data-correct="true">Modelos de movimiento</div>
+        <div class="quiz-option" data-correct="false">Leyes de calor</div>
+        <div class="quiz-option" data-correct="false">Fenómenos cuánticos</div>
+
+        <p><b>3. La caída libre es un caso de:</b></p>
+        <div class="quiz-option" data-correct="true">MRUV</div>
+        <div class="quiz-option" data-correct="false">MRU</div>
+        <div class="quiz-option" data-correct="false">Movimiento circular</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t9">✔ Tema 9 completado</div>
+    </div>
+  </div>
+
+
+  <!-- ================= TEMA 10 ================= -->
+  <div class="card">
+    <div class="tema">Tema 10: Fundamentos generales de física</div>
+
+    <div class="contenido">
+
+      <a class="video-link" href="https://www.youtube.com/watch?v=M7LTtR7pdZk" target="_blank">
+        <span class="video-icon">📘</span> Video: Conceptos fundamentales de física
+      </a>
+
+      <h3>Quiz Tema 10</h3>
+      <div class="quiz">
+
+        <p><b>1. La física estudia:</b></p>
+        <div class="quiz-option" data-correct="true">La naturaleza y sus leyes</div>
+        <div class="quiz-option" data-correct="false">Solo el espacio</div>
+        <div class="quiz-option" data-correct="false">Solo el tiempo</div>
+
+        <p><b>2. Una magnitud física es:</b></p>
+        <div class="quiz-option" data-correct="true">Una cantidad medible</div>
+        <div class="quiz-option" data-correct="false">Un sentimiento</div>
+        <div class="quiz-option" data-correct="false">Un material</div>
+
+        <p><b>3. Todo proceso físico obedece:</b></p>
+        <div class="quiz-option" data-correct="true">Leyes naturales</div>
+        <div class="quiz-option" data-correct="false">Preferencias humanas</div>
+        <div class="quiz-option" data-correct="false">Magia</div>
+
+      </div>
+
+      <div class="quiz-finish" data-tema-id="t10">✔ Tema 10 completado</div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- ========================================================= -->
+<!--     SCRIPTS PARA TEMAS, QUIZ, VIDEO LINKS Y PROGRESO      -->
+<!-- ========================================================= -->
+<script>
+
+  // Abrir / cerrar temas
+  document.querySelectorAll(".tema").forEach(tema => {
+    tema.addEventListener("click", () => {
+      const cont = tema.nextElementSibling;
+      cont.style.display = (cont.style.display === "block") ? "none" : "block";
+    });
+  });
+
+  // Progreso
+  const STORAGE_KEY = "progreso_fisica_basica";
+  let progreso = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+  function guardarProgreso() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progreso));
+  }
+
+  function actualizarBarra() {
+    const completados = Object.keys(progreso).length;
+    const porcentaje = (completados / 10) * 100;
+
+    document.getElementById("temasCompletados").textContent = completados;
+    document.getElementById("barraProgresoCurso").style.width = porcentaje + "%";
+  }
+
+  actualizarBarra();
+
+  // Quiz
+  document.querySelectorAll(".quiz-option").forEach(op => {
+    op.addEventListener("click", () => {
+
+      if (op.classList.contains("correct") || op.classList.contains("incorrect")) return;
+
+      const esCorrecta = op.dataset.correct === "true";
+      op.classList.add(esCorrecta ? "correct" : "incorrect");
+
+      const quiz = op.parentElement;
+      const finish = quiz.parentElement.querySelector(".quiz-finish");
+      const temaId = finish.dataset.temaId;
+
+      const respondidas = quiz.querySelectorAll(".correct, .incorrect").length;
+
+      if (respondidas === 9) {
+        finish.style.display = "block";
+
+        if (!progreso[temaId]) {
+          progreso[temaId] = true;
+          guardarProgreso();
+          actualizarBarra();
+        }
+      }
+    });
+  });
+
+</script>
+
+</body>
+</html>

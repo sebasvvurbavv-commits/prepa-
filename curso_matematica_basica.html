@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Curso: Matemática Básica – Prepa+</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f2f7;
+    }
+
+    header {
+      background: #4a6cf7;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+
+    .tema {
+      background:#e1e7ff;
+      padding:12px;
+      border-radius:8px;
+      cursor:pointer;
+      margin-top:8px;
+      font-weight: bold;
+    }
+
+    .tema:hover { background:#c7d0ff; }
+
+    .contenido {
+      display:none;
+      background:#fafbff;
+      border-left: 4px solid #4a6cf7;
+      padding:15px;
+      border-radius:8px;
+      margin:10px 0;
+    }
+
+    .quiz-option {
+      background:#eaeaff;
+      padding:10px;
+      margin:6px 0;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    .quiz-option.correct { background:#b5ffb5; }
+    .quiz-option.incorrect { background:#ffb5b5; }
+
+    .quiz-finish {
+      background:#4a6cf7;
+      color:white;
+      padding:10px;
+      margin-top:10px;
+      border-radius:8px;
+      display:none;
+    }
+
+    .progreso-barra-base {
+      width:100%;
+      height:18px;
+      background:#ddd;
+      border-radius:10px;
+      overflow:hidden;
+      margin-top:10px;
+    }
+
+    .progreso-barra {
+      width:0%;
+      height:100%;
+      background:#4a6cf7;
+      transition:0.3s;
+    }
+
+    .btn-volver {
+      background:#4a6cf7;
+      color:white;
+      padding:10px 14px;
+      border-radius:8px;
+      display:inline-block;
+      text-decoration:none;
+      margin-bottom:20px;
+    }
+
+    /* Nueva zona: enlaces de video */
+    .video-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #e1e7ff;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .video-link:hover { background:#c7d0ff; }
+
+    .video-icon { font-size: 22px; }
+
+    .video-title { font-size: 16px; }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Curso: Matemática Básica</h1>
+  <p>Funciones, dominio, rango y transformaciones</p>
+</header>
+
+<div class="container">
+
+  <a href="index.html" class="btn-volver">← Volver a cursos</a>
+
+  <!-- PROGRESO DEL CURSO -->
+  <div class="card">
+    <h2>Progreso del curso</h2>
+    <p>Temas completados: <b><span id="temasCompletados">0</span>/10</b></p>
+
+    <div class="progreso-barra-base">
+      <div class="progreso-barra" id="barraProgresoCurso"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!--                      TEMAS CON VIDEOS                     -->
+  <!-- ========================================================= -->
+
+  <!-- ================= TEMA 1 ================= -->
+  <div class="card">
+    <div class="tema">Tema 1: ¿Qué es una función?</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=HAeSkQH1C-I" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">¿Qué es una función? (Explicación clara)</span>
+      </a>
+
+      <h3>Quiz del Tema 1</h3>
+      <div class="quiz">
+        <p><b>1. ¿Qué es una función?</b></p>
+        <div class="quiz-option" data-correct="true">Una relación donde cada entrada tiene una única salida.</div>
+        <div class="quiz-option" data-correct="false">Una relación donde una entrada puede tener varias salidas.</div>
+        <div class="quiz-option" data-correct="false">Una operación matemática sin reglas.</div>
+
+        <p><b>2. ¿Cómo se representa una función?</b></p>
+        <div class="quiz-option" data-correct="true">Fórmulas, gráficos o tablas.</div>
+        <div class="quiz-option" data-correct="false">Solo gráficos.</div>
+        <div class="quiz-option" data-correct="false">Solo tablas.</div>
+
+        <p><b>3. ¿Cuál de estas es una función?</b></p>
+        <div class="quiz-option" data-correct="true">Cada x tiene un único y.</div>
+        <div class="quiz-option" data-correct="false">Una entrada con dos salidas.</div>
+        <div class="quiz-option" data-correct="false">Una relación sin reglas.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema1">✔ Tema 1 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 2 ================= -->
+  <div class="card">
+    <div class="tema">Tema 2: Dominio y Rango</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=H40lcwlgPMk" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Dominio y Rango — explicación desde cero</span>
+      </a>
+
+      <h3>Quiz del Tema 2</h3>
+      <div class="quiz">
+        <p><b>1. ¿Qué es el dominio?</b></p>
+        <div class="quiz-option" data-correct="true">Valores permitidos para x.</div>
+        <div class="quiz-option" data-correct="false">Valores de y.</div>
+        <div class="quiz-option" data-correct="false">Los reales negativos.</div>
+
+        <p><b>2. ¿Qué es el rango?</b></p>
+        <div class="quiz-option" data-correct="true">Valores de salida (y).</div>
+        <div class="quiz-option" data-correct="false">Valores de entrada.</div>
+        <div class="quiz-option" data-correct="false">Números complejos.</div>
+
+        <p><b>3. Dominio de 1/x:</b></p>
+        <div class="quiz-option" data-correct="true">Reales excepto 0.</div>
+        <div class="quiz-option" data-correct="false">Todos los reales.</div>
+        <div class="quiz-option" data-correct="false">Solo positivos.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema2">✔ Tema 2 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 3 ================= -->
+  <div class="card">
+    <div class="tema">Tema 3: Dominio (valores prohibidos)</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=c20QWEhBPKs" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Cómo hallar dominio y valores prohibidos</span>
+      </a>
+
+      <h3>Quiz del Tema 3</h3>
+      <div class="quiz">
+        <p><b>1. ¿Cuándo un valor está prohibido?</b></p>
+        <div class="quiz-option" data-correct="true">Cuando el denominador es 0.</div>
+        <div class="quiz-option" data-correct="false">Cuando x es negativo.</div>
+        <div class="quiz-option" data-correct="false">Cuando y es muy grande.</div>
+
+        <p><b>2. Dominio de √(x−3):</b></p>
+        <div class="quiz-option" data-correct="true">x ≥ 3</div>
+        <div class="quiz-option" data-correct="false">x ≤ 3</div>
+        <div class="quiz-option" data-correct="false">Todos los reales.</div>
+
+        <p><b>3. Valor prohibido en 1/(x+5):</b></p>
+        <div class="quiz-option" data-correct="true">x = -5</div>
+        <div class="quiz-option" data-correct="false">x = 5</div>
+        <div class="quiz-option" data-correct="false">Ninguno.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema3">✔ Tema 3 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 4 ================= -->
+  <div class="card">
+    <div class="tema">Tema 4: Dominio y rango en gráficas</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=YlhOfpREfHE" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Dominio y Rango desde una gráfica</span>
+      </a>
+
+      <h3>Quiz del Tema 4</h3>
+      <div class="quiz">
+        <p><b>1. ¿Cómo se obtiene el dominio en una gráfica?</b></p>
+        <div class="quiz-option" data-correct="true">Proyectando sobre el eje x.</div>
+        <div class="quiz-option" data-correct="false">Sobre eje y.</div>
+        <div class="quiz-option" data-correct="false">No se puede.</div>
+
+        <p><b>2. ¿Cómo se obtiene el rango?</b></p>
+        <div class="quiz-option" data-correct="false">En el eje x.</div>
+        <div class="quiz-option" data-correct="true">En el eje y.</div>
+        <div class="quiz-option" data-correct="false">No existe.</div>
+
+        <p><b>3. Dominio si va de x=-2 a x=5:</b></p>
+        <div class="quiz-option" data-correct="true">[-2, 5]</div>
+        <div class="quiz-option" data-correct="false">(0,5)</div>
+        <div class="quiz-option" data-correct="false">(-∞,5)</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema4">✔ Tema 4 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 5 ================= -->
+  <div class="card">
+    <div class="tema">Tema 5: Función lineal</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=7RKNBRUIfek" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Función lineal — conceptos y ejemplos</span>
+      </a>
+
+      <h3>Quiz del Tema 5</h3>
+      <div class="quiz">
+        <p><b>1. Forma general:</b></p>
+        <div class="quiz-option" data-correct="true">y = mx + b</div>
+        <div class="quiz-option" data-correct="false">y = mx² + b</div>
+        <div class="quiz-option" data-correct="false">y = m/x</div>
+
+        <p><b>2. m es:</b></p>
+        <div class="quiz-option" data-correct="true">Pendiente.</div>
+        <div class="quiz-option" data-correct="false">Dominio.</div>
+        <div class="quiz-option" data-correct="false">Rango.</div>
+
+        <p><b>3. b es:</b></p>
+        <div class="quiz-option" data-correct="true">Corte con eje y.</div>
+        <div class="quiz-option" data-correct="false">Pendiente.</div>
+        <div class="quiz-option" data-correct="false">Nada.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema5">✔ Tema 5 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 6 ================= -->
+  <div class="card">
+    <div class="tema">Tema 6: Pendiente (slope)</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=7RKNBRUIfek" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Pendiente de una recta — explicado simple</span>
+      </a>
+
+      <h3>Quiz del Tema 6</h3>
+      <div class="quiz">
+        <p><b>1. ¿Qué es la pendiente?</b></p>
+        <div class="quiz-option" data-correct="true">Δy/Δx</div>
+        <div class="quiz-option" data-correct="false">Δx/Δy</div>
+        <div class="quiz-option" data-correct="false">Nada.</div>
+
+        <p><b>2. Pendiente negativa:</b></p>
+        <div class="quiz-option" data-correct="true">Recta baja.</div>
+        <div class="quiz-option" data-correct="false">Recta sube.</div>
+        <div class="quiz-option" data-correct="false">Recta curva.</div>
+
+        <p><b>3. Si m = 0:</b></p>
+        <div class="quiz-option" data-correct="true">Recta horizontal.</div>
+        <div class="quiz-option" data-correct="false">Vertical.</div>
+        <div class="quiz-option" data-correct="false">Curva.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema6">✔ Tema 6 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 7 ================= -->
+  <div class="card">
+    <div class="tema">Tema 7: Función cuadrática</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=svqAxfMPw7Q" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Función cuadrática — explicación completa</span>
+      </a>
+
+      <h3>Quiz del Tema 7</h3>
+      <div class="quiz">
+        <p><b>1. Forma de la cuadrática:</b></p>
+        <div class="quiz-option" data-correct="true">y = ax² + bx + c</div>
+        <div class="quiz-option" data-correct="false">y = ax + b</div>
+        <div class="quiz-option" data-correct="false">y = x³</div>
+
+        <p><b>2. Si a > 0:</b></p>
+        <div class="quiz-option" data-correct="true">Abre arriba.</div>
+        <div class="quiz-option" data-correct="false">Abre abajo.</div>
+        <div class="quiz-option" data-correct="false">No abre.</div>
+
+        <p><b>3. El vértice es:</b></p>
+        <div class="quiz-option" data-correct="true">Máximo o mínimo.</div>
+        <div class="quiz-option" data-correct="false">Siempre cero.</div>
+        <div class="quiz-option" data-correct="false">Nada.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema7">✔ Tema 7 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 8 ================= -->
+  <div class="card">
+    <div class="tema">Tema 8: Vértice de la parábola</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=6JQw45YO3Fs" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Vértice de la parábola — paso a paso</span>
+      </a>
+
+      <h3>Quiz del Tema 8</h3>
+      <div class="quiz">
+        <p><b>1. x del vértice:</b></p>
+        <div class="quiz-option" data-correct="true">-b/(2a)</div>
+        <div class="quiz-option" data-correct="false">b/2a</div>
+        <div class="quiz-option" data-correct="false">2a/b</div>
+
+        <p><b>2. y del vértice:</b></p>
+        <div class="quiz-option" data-correct="true">Reemplazando x.</div>
+        <div class="quiz-option" data-correct="false">Derivando.</div>
+        <div class="quiz-option" data-correct="false">Adivinando.</div>
+
+        <p><b>3. Simetría:</b></p>
+        <div class="quiz-option" data-correct="true">Eje x = h.</div>
+        <div class="quiz-option" data-correct="false">Eje y.</div>
+        <div class="quiz-option" data-correct="false">No es simétrica.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema8">✔ Tema 8 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 9 ================= -->
+  <div class="card">
+    <div class="tema">Tema 9: Dominio y Rango extra</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=p0Bkf6Vzb9I" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Dominio y Rango — ejemplos prácticos</span>
+      </a>
+
+      <h3>Quiz del Tema 9</h3>
+      <div class="quiz">
+        <p><b>1. f(g(x)) significa:</b></p>
+        <div class="quiz-option" data-correct="true">g primero, luego f.</div>
+        <div class="quiz-option" data-correct="false">Multiplicar funciones.</div>
+        <div class="quiz-option" data-correct="false">Sumar funciones.</div>
+
+        <p><b>2. Para evaluar f(g(3)):</b></p>
+        <div class="quiz-option" data-correct="true">Se halla g(3).</div>
+        <div class="quiz-option" data-correct="false">Se halla f(3).</div>
+        <div class="quiz-option" data-correct="false">No se puede.</div>
+
+        <p><b>3. La composición puede:</b></p>
+        <div class="quiz-option" data-correct="true">Cambiar dominio.</div>
+        <div class="quiz-option" data-correct="false">No cambia nada.</div>
+        <div class="quiz-option" data-correct="false">Solo existe en rectas.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema9">✔ Tema 9 completado</div>
+    </div>
+  </div>
+
+  <!-- ================= TEMA 10 ================= -->
+  <div class="card">
+    <div class="tema">Tema 10: Evaluación de funciones</div>
+    <div class="contenido">
+
+      <a href="https://www.youtube.com/watch?v=HAeSkQH1C-I" target="_blank" class="video-link">
+        <span class="video-icon">📘</span>
+        <span class="video-title">Evaluación de funciones — ejemplos básicos</span>
+      </a>
+
+      <h3>Quiz del Tema 10</h3>
+      <div class="quiz">
+        <p><b>1. Evaluar f(a) significa:</b></p>
+        <div class="quiz-option" data-correct="true">Reemplazar x por a.</div>
+        <div class="quiz-option" data-correct="false">Derivar.</div>
+        <div class="quiz-option" data-correct="false">Limitar.</div>
+
+        <p><b>2. f(x)=3x+1, f(2)=</b></p>
+        <div class="quiz-option" data-correct="true">7</div>
+        <div class="quiz-option" data-correct="false">6</div>
+        <div class="quiz-option" data-correct="false">3</div>
+
+        <p><b>3. f(x+h) representa:</b></p>
+        <div class="quiz-option" data-correct="true">Desplazamiento en x.</div>
+        <div class="quiz-option" data-correct="false">Igual a f(x).</div>
+        <div class="quiz-option" data-correct="false">Nada.</div>
+      </div>
+
+      <div class="quiz-finish" data-tema-id="tema10">✔ Tema 10 completado</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!--     SCRIPTS: TEMAS, VIDEOS, QUIZ, PROGRESO LOCAL          -->
+<!-- ========================================================= -->
+<script>
+
+  // Abrir / cerrar temas
+  document.querySelectorAll(".tema").forEach(tema => {
+    tema.addEventListener("click", () => {
+      const cont = tema.nextElementSibling;
+
+      cont.style.display =
+        cont.style.display === "block" ? "none" : "block";
+    });
+  });
+
+  // Progreso
+  const STORAGE_KEY = "progreso_mat_basica";
+  let progreso = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+  function guardarProgreso() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progreso));
+  }
+
+  function actualizarBarra() {
+    const completados = Object.keys(progreso).length;
+    const porcentaje = (completados / 10) * 100;
+    document.getElementById("temasCompletados").textContent = completados;
+    document.getElementById("barraProgresoCurso").style.width = porcentaje + "%";
+  }
+
+  actualizarBarra();
+
+  // Quiz
+  document.querySelectorAll(".quiz-option").forEach(op => {
+    op.addEventListener("click", () => {
+
+      if (op.classList.contains("correct") || op.classList.contains("incorrect")) return;
+
+      const esCorrecta = op.dataset.correct === "true";
+      op.classList.add(esCorrecta ? "correct" : "incorrect");
+
+      const quiz = op.parentElement;
+      const finish = quiz.parentElement.querySelector(".quiz-finish");
+      const temaId = finish.dataset.temaId;
+
+      const respondidas = quiz.querySelectorAll(".correct, .incorrect").length;
+
+      if (respondidas === 9) {
+        finish.style.display = "block";
+
+        if (!progreso[temaId]) {
+          progreso[temaId] = true;
+          guardarProgreso();
+          actualizarBarra();
+        }
+      }
+    });
+  });
+
+</script>
+
+</body>
+</html>

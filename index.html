@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepa+</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f2f7;
+        }
+
+        header {
+            background: #4a6cf7;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .cursos-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .curso-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+        }
+
+        .curso-img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .progreso-barra-base {
+            width: 100%;
+            height: 12px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progreso-barra {
+            height: 100%;
+            width: 0%;
+            background: #4a6cf7;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Prepa+</h1>
+    <p>Tu plataforma de preparación con gamificación</p>
+</header>
+
+<div class="container">
+
+    <h2>Cursos disponibles</h2>
+
+    <div class="cursos-container">
+
+
+        <!-- ===================================================== -->
+        <!-- ================= MATEMÁTICA BÁSICA ================= -->
+        <!-- ===================================================== -->
+        <div class="curso-card" onclick="location.href='curso_matematica_basica.html'">
+            <img src="https://files.cercomp.ufg.br/weby/up/1/o/logo_petmet_24.png"
+                 alt="Matemática Básica" class="curso-img">
+
+            <h3>Matemática Básica</h3>
+
+            <div class="progreso-barra-base">
+                <div id="progresoMatematica" class="progreso-barra"></div>
+            </div>
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- ==================== FÍSICA BÁSICA =================== -->
+        <!-- ===================================================== -->
+        <div class="curso-card" onclick="location.href='curso_fisica_basica.html'">
+            <img src="https://eva4.fmed.edu.uy/pluginfile.php/1718/course/overviewfiles/fisbas25.png"
+                 alt="Física Básica" class="curso-img">
+
+            <h3>Física Básica</h3>
+
+            <div class="progreso-barra-base">
+                <div id="progresoFisica" class="progreso-barra"></div>
+            </div>
+        </div>
+
+
+
+        <!-- ===================================================== -->
+        <!-- =============== CURSOS ADICIONALES (EJEMPLO) ========= -->
+        <!-- ===================================================== -->
+
+        <div class="curso-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Math_icon.svg/768px-Math_icon.svg.png"
+                 class="curso-img">
+            <h3>Matemática Avanzada</h3>
+            <div class="progreso-barra-base">
+                <div class="progreso-barra" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="curso-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png"
+                 class="curso-img">
+            <h3>Química Básica</h3>
+            <div class="progreso-barra-base">
+                <div class="progreso-barra" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="curso-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/201/201565.png"
+                 class="curso-img">
+            <h3>Comunicación</h3>
+            <div class="progreso-barra-base">
+                <div class="progreso-barra" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="curso-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png"
+                 class="curso-img">
+            <h3>Razonamiento Verbal</h3>
+            <div class="progreso-barra-base">
+                <div class="progreso-barra" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="curso-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2913/2913583.png"
+                 class="curso-img">
+            <h3>Razonamiento Matemático</h3>
+            <div class="progreso-barra-base">
+                <div class="progreso-barra" style="width: 0%;"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- ============== SCRIPT PARA PROGRESOS =================== -->
+<!-- ======================================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // PROGRESO MATEMÁTICA BÁSICA
+    const progMat = JSON.parse(localStorage.getItem("progreso_mat_basica") || "{}");
+    const compMat = Object.keys(progMat).length;
+    const porcentajeMat = (compMat / 10) * 100;
+    document.getElementById("progresoMatematica").style.width = porcentajeMat + "%";
+
+    // PROGRESO FÍSICA BÁSICA
+    const progFisica = JSON.parse(localStorage.getItem("progreso_fisica_basica") || "{}");
+    const compFis = Object.keys(progFisica).length;
+    const porcentajeFis = (compFis / 10) * 100;
+    document.getElementById("progresoFisica").style.width = porcentajeFis + "%";
+
+});
+</script>
+
+</body>
+</html>
