@@ -15,21 +15,32 @@
         header {
             background: #4a6cf7;
             color: white;
-            padding: 25px;
+            padding: 25px 0;
+            position: relative;
             text-align: center;
         }
 
-        /* ===== NAVBAR SUPERIOR ===== */
+        /* ===== CENTRAR TITULO + ICONOS ===== */
         .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
         }
 
         .icons {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            height: 100%;
             display: flex;
-            gap: 18px;
             align-items: center;
+            gap: 18px;
         }
 
         .icon {
@@ -109,7 +120,7 @@
             transition: 0.3s;
         }
 
-        /* ===== MODAL LOGIN ===== */
+        /* ===== MODALES ===== */
         .modal {
             display: none;
             position: fixed;
@@ -120,12 +131,13 @@
             background: rgba(0,0,0,0.55);
             justify-content: center;
             align-items: center;
+            z-index: 9999;
         }
 
         .modal-content {
             background: white;
             padding: 25px;
-            width: 330px;
+            width: 360px;
             border-radius: 12px;
             text-align: center;
         }
@@ -148,7 +160,6 @@
             cursor: pointer;
             font-weight: bold;
         }
-
     </style>
 </head>
 
@@ -158,6 +169,7 @@
 <header>
     <div class="top-bar">
         <h1>Prepa+</h1>
+
         <div class="icons">
             <span class="icon" onclick="abrirCarrito()">🛒</span>
             <span class="icon" onclick="abrirPerfil()">👤</span>
@@ -171,7 +183,6 @@
 
 <!-- ========================= CONTENIDO ========================= -->
 <div class="container">
-
     <h2>Cursos disponibles</h2>
 
     <div class="cursos-container">
@@ -200,50 +211,40 @@
             </div>
         </div>
 
-        <!-- CURSOS EXTRA -->
+        <!-- OTROS CURSOS -->
         <div class="curso-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Math_icon.svg/768px-Math_icon.svg.png"
                  class="curso-img">
             <h3>Matemática Avanzada</h3>
-            <div class="progreso-barra-base">
-                <div class="progreso-barra" style="width: 0%;"></div>
-            </div>
+            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
         </div>
 
         <div class="curso-card">
             <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png"
                  class="curso-img">
             <h3>Química Básica</h3>
-            <div class="progreso-barra-base">
-                <div class="progreso-barra" style="width: 0%;"></div>
-            </div>
+            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
         </div>
 
         <div class="curso-card">
             <img src="https://cdn-icons-png.flaticon.com/512/201/201565.png"
                  class="curso-img">
             <h3>Comunicación</h3>
-            <div class="progreso-barra-base">
-                <div class="progreso-barra" style="width: 0%;"></div>
-            </div>
+            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
         </div>
 
         <div class="curso-card">
             <img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png"
                  class="curso-img">
             <h3>Razonamiento Verbal</h3>
-            <div class="progreso-barra-base">
-                <div class="progreso-barra" style="width: 0%;"></div>
-            </div>
+            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
         </div>
 
         <div class="curso-card">
             <img src="https://cdn-icons-png.flaticon.com/512/2913/2913583.png"
                  class="curso-img">
             <h3>Razonamiento Matemático</h3>
-            <div class="progreso-barra-base">
-                <div class="progreso-barra" style="width: 0%;"></div>
-            </div>
+            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
         </div>
 
     </div>
@@ -264,26 +265,38 @@
     </div>
 </div>
 
+<!-- ======================= MODAL YAPE ======================= -->
+<div id="modalYape" class="modal">
+    <div class="modal-content" style="width: 360px;">
+        <h2>Paga con Yape</h2>
+
+        <!-- QR HOSTEADO PARA QUE SIEMPRE FUNCIONE -->
+        <img 
+            src="https://i.imgur.com/9gUuqoU.png"
+            style="width: 100%; border-radius: 12px;"
+        >
+
+        <p style="margin-top: 10px; font-size: 20px; font-weight: bold; color:#4a6cf7;">
+            936 756 616
+        </p>
+
+        <button style="background:#999; margin-top: 10px;" onclick="cerrarYape()">Cerrar</button>
+    </div>
+</div>
+
 
 <!-- ========================= SCRIPTS ========================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    // PROGRESO MATEMÁTICA BÁSICA
     const progMat = JSON.parse(localStorage.getItem("progreso_mat_basica") || "{}");
-    const compMat = Object.keys(progMat).length;
-    const porcentajeMat = (compMat / 10) * 100;
-    document.getElementById("progresoMatematica").style.width = porcentajeMat + "%";
+    document.getElementById("progresoMatematica").style.width =
+        (Object.keys(progMat).length / 10 * 100) + "%";
 
-    // PROGRESO FÍSICA BÁSICA
     const progFis = JSON.parse(localStorage.getItem("progreso_fisica_basica") || "{}");
-    const compFis = Object.keys(progFis).length;
-    const porcentajeFis = (compFis / 10) * 100;
-    document.getElementById("progresoFisica").style.width = porcentajeFis + "%";
+    document.getElementById("progresoFisica").style.width =
+        (Object.keys(progFis).length / 10 * 100) + "%";
 });
-
-
-// ========================== LOGIN ==========================
 
 function abrirLogin() {
     document.getElementById("modalLogin").style.display = "flex";
@@ -294,24 +307,25 @@ function cerrarLogin() {
 }
 
 function iniciarSesion() {
-    const correo = document.getElementById("emailLogin").value;
-    const pass   = document.getElementById("passwordLogin").value;
-
-    if (correo.trim() === "" || pass.trim() === "") {
+    if (!document.getElementById("emailLogin").value ||
+        !document.getElementById("passwordLogin").value) {
         alert("Completa los campos.");
         return;
     }
-
-    alert("Sesión iniciada (demo).");
+    alert("Sesión iniciada (demo)");
     cerrarLogin();
 }
 
 function abrirCarrito() {
-    alert("Carrito (en desarrollo)");
+    document.getElementById("modalYape").style.display = "flex";
+}
+
+function cerrarYape() {
+    document.getElementById("modalYape").style.display = "none";
 }
 
 function abrirPerfil() {
-    alert("Perfil de usuario (en desarrollo)");
+    alert("Perfil en desarrollo");
 }
 </script>
 
