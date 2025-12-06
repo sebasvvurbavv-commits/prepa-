@@ -19,6 +19,44 @@
             text-align: center;
         }
 
+        /* ===== NAVBAR SUPERIOR ===== */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icons {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .icon {
+            font-size: 26px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .btn-login {
+            background: white;
+            color: #4a6cf7;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-login:hover {
+            background: #dce3ff;
+        }
+
         .container {
             width: 90%;
             margin: auto;
@@ -70,26 +108,75 @@
             background: #4a6cf7;
             transition: 0.3s;
         }
+
+        /* ===== MODAL LOGIN ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            width: 330px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .modal-content input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #999;
+        }
+
+        .modal-content button {
+            background: #4a6cf7;
+            color: white;
+            padding: 10px 15px;
+            width: 95%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 
 <body>
 
+<!-- ========================= HEADER ========================= -->
 <header>
-    <h1>Prepa+</h1>
+    <div class="top-bar">
+        <h1>Prepa+</h1>
+        <div class="icons">
+            <span class="icon" onclick="abrirCarrito()">🛒</span>
+            <span class="icon" onclick="abrirPerfil()">👤</span>
+            <button class="btn-login" onclick="abrirLogin()">Iniciar Sesión</button>
+        </div>
+    </div>
+
     <p>Tu plataforma de preparación con gamificación</p>
 </header>
 
+
+<!-- ========================= CONTENIDO ========================= -->
 <div class="container">
 
     <h2>Cursos disponibles</h2>
 
     <div class="cursos-container">
 
-
-        <!-- ===================================================== -->
-        <!-- ================= MATEMÁTICA BÁSICA ================= -->
-        <!-- ===================================================== -->
+        <!-- MATEMÁTICA BÁSICA -->
         <div class="curso-card" onclick="location.href='curso_matematica_basica.html'">
             <img src="https://files.cercomp.ufg.br/weby/up/1/o/logo_petmet_24.png"
                  alt="Matemática Básica" class="curso-img">
@@ -101,10 +188,7 @@
             </div>
         </div>
 
-
-        <!-- ===================================================== -->
-        <!-- ==================== FÍSICA BÁSICA =================== -->
-        <!-- ===================================================== -->
+        <!-- FÍSICA BÁSICA -->
         <div class="curso-card" onclick="location.href='curso_fisica_basica.html'">
             <img src="https://eva4.fmed.edu.uy/pluginfile.php/1718/course/overviewfiles/fisbas25.png"
                  alt="Física Básica" class="curso-img">
@@ -116,12 +200,7 @@
             </div>
         </div>
 
-
-
-        <!-- ===================================================== -->
-        <!-- =============== CURSOS ADICIONALES (EJEMPLO) ========= -->
-        <!-- ===================================================== -->
-
+        <!-- CURSOS EXTRA -->
         <div class="curso-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Math_icon.svg/768px-Math_icon.svg.png"
                  class="curso-img">
@@ -167,14 +246,26 @@
             </div>
         </div>
 
-
     </div>
 </div>
 
 
-<!-- ======================================================== -->
-<!-- ============== SCRIPT PARA PROGRESOS =================== -->
-<!-- ======================================================== -->
+<!-- ======================= MODAL LOGIN ======================= -->
+<div id="modalLogin" class="modal">
+    <div class="modal-content">
+        <h2>Iniciar Sesión</h2>
+
+        <input type="email" id="emailLogin" placeholder="Correo electrónico">
+        <input type="password" id="passwordLogin" placeholder="Contraseña">
+
+        <button onclick="iniciarSesion()">Ingresar</button>
+        <br><br>
+        <button style="background:#999" onclick="cerrarLogin()">Cerrar</button>
+    </div>
+</div>
+
+
+<!-- ========================= SCRIPTS ========================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -185,12 +276,43 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("progresoMatematica").style.width = porcentajeMat + "%";
 
     // PROGRESO FÍSICA BÁSICA
-    const progFisica = JSON.parse(localStorage.getItem("progreso_fisica_basica") || "{}");
-    const compFis = Object.keys(progFisica).length;
+    const progFis = JSON.parse(localStorage.getItem("progreso_fisica_basica") || "{}");
+    const compFis = Object.keys(progFis).length;
     const porcentajeFis = (compFis / 10) * 100;
     document.getElementById("progresoFisica").style.width = porcentajeFis + "%";
-
 });
+
+
+// ========================== LOGIN ==========================
+
+function abrirLogin() {
+    document.getElementById("modalLogin").style.display = "flex";
+}
+
+function cerrarLogin() {
+    document.getElementById("modalLogin").style.display = "none";
+}
+
+function iniciarSesion() {
+    const correo = document.getElementById("emailLogin").value;
+    const pass   = document.getElementById("passwordLogin").value;
+
+    if (correo.trim() === "" || pass.trim() === "") {
+        alert("Completa los campos.");
+        return;
+    }
+
+    alert("Sesión iniciada (demo).");
+    cerrarLogin();
+}
+
+function abrirCarrito() {
+    alert("Carrito (en desarrollo)");
+}
+
+function abrirPerfil() {
+    alert("Perfil de usuario (en desarrollo)");
+}
 </script>
 
 </body>
