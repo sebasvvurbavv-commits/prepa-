@@ -20,7 +20,6 @@
             text-align: center;
         }
 
-        /* ===== CENTRAR TITULO + ICONOS ===== */
         .top-bar {
             position: relative;
             width: 100%;
@@ -120,7 +119,6 @@
             transition: 0.3s;
         }
 
-        /* ===== MODALES ===== */
         .modal {
             display: none;
             position: fixed;
@@ -161,7 +159,6 @@
             font-weight: bold;
         }
 
-        /* ======== FORO ======== */
         #foro {
             margin-top: 50px;
             background: white;
@@ -201,16 +198,14 @@
             color: #4a6cf7;
             font-weight: bold;
         }
-
     </style>
 </head>
 
 <body>
 
-<!-- ========================= HEADER ========================= -->
 <header>
     <div class="top-bar">
-        <h1>Prepa+</h1>
+        <h1>EDUWEB</h1>
 
         <div class="icons">
             <span class="icon" onclick="abrirCarrito()">🛒</span>
@@ -222,212 +217,96 @@
     <p>Tu plataforma de preparación con gamificación</p>
 </header>
 
-
-<!-- ========================= CONTENIDO ========================= -->
 <div class="container">
     <h2>Cursos disponibles</h2>
 
     <div class="cursos-container">
 
-        <!-- MATEMÁTICA BÁSICA -->
         <div class="curso-card" onclick="location.href='curso_matematica_basica.html'">
-            <img src="https://files.cercomp.ufg.br/weby/up/1/o/logo_petmet_24.png"
-                 alt="Matemática Básica" class="curso-img">
-
+            <img src="https://files.cercomp.ufg.br/weby/up/1/o/logo_petmet_24.png" class="curso-img">
             <h3>Matemática Básica</h3>
-
-            <div class="progreso-barra-base">
-                <div id="progresoMatematica" class="progreso-barra"></div>
-            </div>
+            <div class="progreso-barra-base"><div id="progresoMatematica" class="progreso-barra"></div></div>
         </div>
 
-        <!-- FÍSICA BÁSICA -->
         <div class="curso-card" onclick="location.href='curso_fisica_basica.html'">
-            <img src="https://eva4.fmed.edu.uy/pluginfile.php/1718/course/overviewfiles/fisbas25.png"
-                 alt="Física Básica" class="curso-img">
-
+            <img src="https://eva4.fmed.edu.uy/pluginfile.php/1718/course/overviewfiles/fisbas25.png" class="curso-img">
             <h3>Física Básica</h3>
-
-            <div class="progreso-barra-base">
-                <div id="progresoFisica" class="progreso-barra"></div>
-            </div>
+            <div class="progreso-barra-base"><div id="progresoFisica" class="progreso-barra"></div></div>
         </div>
 
-        <!-- OTROS CURSOS -->
         <div class="curso-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Math_icon.svg/768px-Math_icon.svg.png"
-                 class="curso-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Math_icon.svg/768px-Math_icon.svg.png" class="curso-img">
             <h3>Matemática Avanzada</h3>
             <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
         </div>
 
-        <div class="curso-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png"
-                 class="curso-img">
-            <h3>Química Básica</h3>
-            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
-        </div>
-
-        <div class="curso-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/201/201565.png"
-                 class="curso-img">
-            <h3>Comunicación</h3>
-            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
-        </div>
-
-        <div class="curso-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png"
-                 class="curso-img">
-            <h3>Razonamiento Verbal</h3>
-            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
-        </div>
-
-        <div class="curso-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2913/2913583.png"
-                 class="curso-img">
-            <h3>Razonamiento Matemático</h3>
-            <div class="progreso-barra-base"><div class="progreso-barra"></div></div>
-        </div>
-
     </div>
 
-
-    <!-- ========================= FORO ========================= -->
     <div id="foro">
         <h2>Foro de alumnos 💬</h2>
-
-        <textarea id="comentarioTexto" placeholder="Escribe algo sobre tus cursos o dudas académicas..."></textarea>
+        <textarea id="comentarioTexto" placeholder="Escribe algo..."></textarea>
         <button onclick="publicarComentario()">Publicar</button>
-
         <div id="listaComentarios"></div>
     </div>
-
 </div>
 
-
-
-<!-- ======================= MODAL LOGIN ======================= -->
 <div id="modalLogin" class="modal">
     <div class="modal-content">
         <h2>Iniciar Sesión</h2>
-
-        <input type="email" id="emailLogin" placeholder="Correo electrónico">
+        <input type="email" id="emailLogin" placeholder="Correo">
         <input type="password" id="passwordLogin" placeholder="Contraseña">
-
-        <button onclick="iniciarSesion()">Ingresar</button>
-        <br><br>
+        <button onclick="iniciarSesion()">Ingresar</button><br><br>
         <button style="background:#999" onclick="cerrarLogin()">Cerrar</button>
     </div>
 </div>
 
-<!-- ======================= MODAL YAPE ======================= -->
 <div id="modalYape" class="modal">
-    <div class="modal-content" style="width: 360px;">
+    <div class="modal-content">
         <h2>Paga con Yape</h2>
-
-        <img 
-            src="https://i.imgur.com/9gUuqoU.png"
-            style="width: 100%; border-radius: 12px;"
-        >
-
-        <p style="margin-top: 10px; font-size: 20px; font-weight: bold; color:#4a6cf7;">
-            936 756 616
-        </p>
-
-        <button style="background:#999; margin-top: 10px;" onclick="cerrarYape()">Cerrar</button>
+        <img src="https://i.imgur.com/9gUuqoU.png" style="width:100%">
+        <p style="font-size:20px;font-weight:bold">936 756 616</p>
+        <button style="background:#999" onclick="cerrarYape()">Cerrar</button>
     </div>
 </div>
 
-
-<!-- ========================= SCRIPTS ========================= -->
 <script>
-
-// ================== PROGRESO DE CURSOS ==================
 document.addEventListener("DOMContentLoaded", () => {
-
-    const progMat = JSON.parse(localStorage.getItem("progreso_mat_basica") || "{}");
-    document.getElementById("progresoMatematica").style.width =
-        (Object.keys(progMat).length / 10 * 100) + "%";
-
-    const progFis = JSON.parse(localStorage.getItem("progreso_fisica_basica") || "{}");
-    document.getElementById("progresoFisica").style.width =
-        (Object.keys(progFis).length / 10 * 100) + "%";
-
+    document.getElementById("progresoMatematica").style.width = "50%";
+    document.getElementById("progresoFisica").style.width = "30%";
     cargarComentarios();
 });
 
-// ================== LOGIN ==================
-function abrirLogin() {
-    document.getElementById("modalLogin").style.display = "flex";
-}
+function abrirLogin(){ document.getElementById("modalLogin").style.display="flex"; }
+function cerrarLogin(){ document.getElementById("modalLogin").style.display="none"; }
+function abrirCarrito(){ document.getElementById("modalYape").style.display="flex"; }
+function cerrarYape(){ document.getElementById("modalYape").style.display="none"; }
+function abrirPerfil(){ alert("Perfil en desarrollo"); }
 
-function cerrarLogin() {
-    document.getElementById("modalLogin").style.display = "none";
-}
-
-function iniciarSesion() {
-    if (!emailLogin.value || !passwordLogin.value) {
-        alert("Completa los campos.");
-        return;
-    }
-    alert("Sesión iniciada (demo)");
+function iniciarSesion(){
+    alert("Sesión iniciada");
     cerrarLogin();
 }
 
-// ================== CARRITO ==================
-function abrirCarrito() {
-    document.getElementById("modalYape").style.display = "flex";
-}
-
-function cerrarYape() {
-    document.getElementById("modalYape").style.display = "none";
-}
-
-function abrirPerfil() {
-    alert("Perfil en desarrollo");
-}
-
-// ================== FORO ==================
-function cargarComentarios() {
-    const comentarios = JSON.parse(localStorage.getItem("foro_prepamas") || "[]");
+function cargarComentarios(){
+    const comentarios = JSON.parse(localStorage.getItem("foro_eduweb") || "[]");
     const lista = document.getElementById("listaComentarios");
-
-    lista.innerHTML = "";
-
-    comentarios.forEach(c => {
-        lista.innerHTML += `
-            <div class="comentario">
-                <small>${c.fecha}</small><br>
-                ${c.texto}
-            </div>
-        `;
+    lista.innerHTML="";
+    comentarios.forEach(c=>{
+        lista.innerHTML += `<div class="comentario"><small>${c.fecha}</small><br>${c.texto}</div>`;
     });
 }
 
-function publicarComentario() {
-    const texto = document.getElementById("comentarioTexto").value.trim();
+function publicarComentario(){
+    const texto = comentarioTexto.value.trim();
+    if(texto===""){ alert("Escribe algo"); return; }
 
-    if (texto === "") {
-        alert("Escribe un comentario.");
-        return;
-    }
-
-    const comentarios = JSON.parse(localStorage.getItem("foro_prepamas") || "[]");
-
-    comentarios.push({
-        texto: texto,
-        fecha: new Date().toLocaleString()
-    });
-
-    localStorage.setItem("foro_prepamas", JSON.stringify(comentarios));
-
-    document.getElementById("comentarioTexto").value = "";
-
+    const comentarios = JSON.parse(localStorage.getItem("foro_eduweb") || "[]");
+    comentarios.push({texto:texto,fecha:new Date().toLocaleString()});
+    localStorage.setItem("foro_eduweb",JSON.stringify(comentarios));
+    comentarioTexto.value="";
     cargarComentarios();
 }
-
 </script>
 
 </body>
 </html>
-
