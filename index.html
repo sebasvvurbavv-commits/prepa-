@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDUWEB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
@@ -77,6 +77,11 @@
             text-align: center;
             cursor: pointer;
             box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            transition: 0.2s;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-5px);
         }
 
         .curso-img {
@@ -100,8 +105,10 @@
             height: 100%;
             width: 0%;
             background: #4a6cf7;
+            transition: 0.3s;
         }
 
+        /* MODALES */
         .modal {
             display: none;
             position: fixed;
@@ -122,6 +129,7 @@
             text-align: center;
         }
 
+        /* FORO */
         #foro {
             margin-top: 50px;
             background: white;
@@ -143,12 +151,14 @@
 <header>
     <div class="top-bar">
         <h1>EDUWEB</h1>
+
         <div class="icons">
             <span class="icon" onclick="abrirCarrito()">🛒</span>
             <span class="icon" onclick="abrirPerfil()">👤</span>
             <button class="btn-login" onclick="abrirLogin()">Iniciar Sesión</button>
         </div>
     </div>
+
     <p>Tu plataforma de preparación con gamificación</p>
 </header>
 
@@ -157,19 +167,25 @@
 
     <div class="cursos-container">
 
-        <!-- TODOS LOS CURSOS -->
-        <div class="curso-card">
+        <!-- MATEMÁTICA -->
+        <div class="curso-card" onclick="location.href='curso_matematica_basica.html'">
             <img src="https://files.cercomp.ufg.br/weby/up/1/o/logo_petmet_24.png" class="curso-img">
             <h3>Matemática Básica</h3>
-            <div class="progreso-barra-base"><div class="progreso-barra" id="progresoMatematica"></div></div>
+            <div class="progreso-barra-base">
+                <div id="progresoMatematica" class="progreso-barra"></div>
+            </div>
         </div>
 
-        <div class="curso-card">
+        <!-- FÍSICA -->
+        <div class="curso-card" onclick="location.href='curso_fisica_basica.html'">
             <img src="https://eva4.fmed.edu.uy/pluginfile.php/1718/course/overviewfiles/fisbas25.png" class="curso-img">
             <h3>Física Básica</h3>
-            <div class="progreso-barra-base"><div class="progreso-barra" id="progresoFisica"></div></div>
+            <div class="progreso-barra-base">
+                <div id="progresoFisica" class="progreso-barra"></div>
+            </div>
         </div>
 
+        <!-- RESTO DE CURSOS -->
         <div class="curso-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Math_icon.svg" class="curso-img">
             <h3>Matemática Avanzada</h3>
@@ -202,6 +218,7 @@
 
     </div>
 
+    <!-- ========================= FORO ========================= -->
     <div id="foro">
         <h2>Foro de alumnos 💬</h2>
         <textarea id="comentarioTexto" placeholder="Escribe algo..."></textarea>
@@ -210,21 +227,76 @@
     </div>
 </div>
 
-<script>
-document.getElementById("progresoMatematica").style.width = "40%";
-document.getElementById("progresoFisica").style.width = "30%";
+<!-- LOGIN -->
+<div id="modalLogin" class="modal">
+    <div class="modal-content">
+        <h2>Iniciar Sesión</h2>
+        <input type="email" id="emailLogin" placeholder="Correo">
+        <input type="password" id="passwordLogin" placeholder="Contraseña">
+        <button onclick="iniciarSesion()">Ingresar</button><br><br>
+        <button onclick="cerrarLogin()">Cerrar</button>
+    </div>
+</div>
 
-function publicarComentario(){
-    const texto = comentarioTexto.value;
-    const lista = document.getElementById("listaComentarios");
-    lista.innerHTML += `<div class="comentario">${texto}</div>`;
-    comentarioTexto.value="";
+<!-- YAPE -->
+<div id="modalYape" class="modal">
+    <div class="modal-content">
+        <h2>Paga con Yape</h2>
+        <img src="https://i.imgur.com/9gUuqoU.png" style="width:100%">
+        <p style="font-size:20px;font-weight:bold;">936 756 616</p>
+        <button onclick="cerrarYape()">Cerrar</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const mat = JSON.parse(localStorage.getItem("progreso_mat_basica") || "{}");
+    document.getElementById("progresoMatematica").style.width =
+        (Object.keys(mat).length / 10 * 100) + "%";
+
+    const fis = JSON.parse(localStorage.getItem("progreso_fisica_basica") || "{}");
+    document.getElementById("progresoFisica").style.width =
+        (Object.keys(fis).length / 10 * 100) + "%";
+
+    cargarComentarios();
+});
+
+function abrirLogin(){ document.getElementById("modalLogin").style.display = "flex"; }
+function cerrarLogin(){ document.getElementById("modalLogin").style.display = "none"; }
+
+function iniciarSesion() {
+    alert("Sesión iniciada (demo)");
+    cerrarLogin();
 }
 
-function abrirLogin(){ alert("Login abierto"); }
+function abrirCarrito(){ document.getElementById("modalYape").style.display = "flex"; }
+function cerrarYape(){ document.getElementById("modalYape").style.display = "none"; }
+
 function abrirPerfil(){ alert("Perfil en desarrollo"); }
-function abrirCarrito(){ alert("Yape abierto"); }
+
+function cargarComentarios() {
+    const comentarios = JSON.parse(localStorage.getItem("foro_eduweb") || "[]");
+    const lista = document.getElementById("listaComentarios");
+    lista.innerHTML = "";
+    comentarios.forEach(c => {
+        lista.innerHTML += `<div class="comentario"><small>${c.fecha}</small><br>${c.texto}</div>`;
+    });
+}
+
+function publicarComentario() {
+    const texto = document.getElementById("comentarioTexto").value.trim();
+    if (texto === "") return alert("Escribe un comentario");
+
+    const comentarios = JSON.parse(localStorage.getItem("foro_eduweb") || "[]");
+    comentarios.push({ texto, fecha: new Date().toLocaleString() });
+    localStorage.setItem("foro_eduweb", JSON.stringify(comentarios));
+
+    document.getElementById("comentarioTexto").value = "";
+    cargarComentarios();
+}
 </script>
 
 </body>
 </html>
+
